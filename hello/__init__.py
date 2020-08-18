@@ -1,9 +1,9 @@
 from flask import Flask
+from flask import request
 from markupsafe import escape
 
 
 def create_app():
-
     app = Flask(__name__)
 
     @app.route('/')
@@ -32,5 +32,10 @@ def create_app():
     @app.route('/news', methods=['GET'])
     def shows_news():
         return "Today’s news is ..."
+
+    @app.route("/greeting")
+    def greeting():
+        name = request.args.get("name")
+        return f"Kia Ora {name}"
 
     return app
