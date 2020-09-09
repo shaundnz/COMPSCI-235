@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<p> fuck </p>
+
+{% if person is not none %}
+<tr>
+    <td>{{ person.id_number }}</td>
+    <td>{{ person.firstname }}</td>
+    <td>{{ person.lastname }}</td>
+</tr>
+{% else %}
+<p>No matching person found</p>
+{% endif %}
+
+{% endblock %}

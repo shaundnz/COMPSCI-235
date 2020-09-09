@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<main>
+    <form method="post" action="{{ handler_url }}">
+        <p>this is a fucking form</p>
+        {{ form.csrf_token }}
+        {{ form.person_id.label }}
+        {{ form.person_id }}
+        {{ form.submit }}
+    </form>
+</main>
+
+{% endblock %}

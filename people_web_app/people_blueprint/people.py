@@ -3,6 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField
 from wtforms.validators import DataRequired
 
+from people_web_app.forms import SearchForm
 import people_web_app.adapters.repository as repo
 
 people_blueprint = Blueprint(
@@ -21,12 +22,23 @@ def home():
 
 @people_blueprint.route('/list')
 def list_people():
-    pass
+    return render_template(
+        'list_people.html',
+        people=repo.repo_instance
+    )
 
 
 @people_blueprint.route('/find', methods=['GET', 'POST'])
 def find_person():
-    pass
+    form = SearchForm()
 
+    if form.validate_on_submit():
+        return render_template(
+            'list_person.html',
+            person=repo.repo_instance.get_person(form.person_id.data)
+        )
 
-
+    return render_template(
+        'find_person.html',
+        form=form,
+    )
